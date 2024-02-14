@@ -1,9 +1,10 @@
 package io.butty.api;
 
-import org.apache.logging.log4j.Logger;
+import io.netty.buffer.ByteBuf;
 
 public interface ProxyServer {
-    Logger getLogger();
+    int getPort();
+    String getIP();
     String getName();
-    String getVersion();
+    void sendData(ByteBuf byteBuf);
 }

@@ -25,7 +25,7 @@ public class Main {
                 .defaultsTo(new File("config.yml"));
 
         ServerJVMChecker.check();
-        ProxyServerImp.launch(parser.parse(args));
+        ButtyServer.launch(parser.parse(args));
     }
 
     public static List<String> asList(String... args) {
