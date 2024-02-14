@@ -1,6 +1,6 @@
-package io.butty.craftbutty.network.protocol;
+package io.butty.network.protocol;
 
-import io.butty.craftbutty.network.ProtocolManager;
+import io.butty.network.ProtocolManager;
 
 public class ServerHandshakePacket extends Packet {
     @Override

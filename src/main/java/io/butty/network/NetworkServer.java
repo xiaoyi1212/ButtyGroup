@@ -1,4 +1,4 @@
-package io.butty.craftbutty.network;
+package io.butty.network;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -43,13 +43,13 @@ public class NetworkServer implements Runnable{
 
     public void launch(){
         thread = new Thread(this);
-        thread.setName("Network I/O");
+        thread.setName("Network IO");
         thread.setDaemon(true);
         thread.start();
     }
 
     public void shutdown(){
-        LOGGER.info("Closing Network I/O...");
+        LOGGER.info("Closing Network IO...");
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
         server.close();

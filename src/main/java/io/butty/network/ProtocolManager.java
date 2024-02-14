@@ -1,8 +1,8 @@
-package io.butty.craftbutty.network;
+package io.butty.network;
 
 import com.esotericsoftware.reflectasm.ConstructorAccess;
-import io.butty.craftbutty.network.protocol.Packet;
-import io.butty.craftbutty.util.Util;
+import io.butty.network.protocol.Packet;
+import io.butty.util.Util;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
 public class ProtocolManager {

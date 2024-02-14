@@ -1,6 +1,5 @@
 package io.butty;
 
-import io.butty.craftbutty.ProxyServerImp;
 import joptsimple.OptionParser;
 
 import java.io.File;

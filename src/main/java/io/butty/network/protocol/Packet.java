@@ -1,4 +1,4 @@
-package io.butty.craftbutty.network.protocol;
+package io.butty.network.protocol;
 
 public abstract class Packet {
     public abstract int getID();

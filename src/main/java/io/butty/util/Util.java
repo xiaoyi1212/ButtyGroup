@@ -1,4 +1,4 @@
-package io.butty.craftbutty.util;
+package io.butty.util;
 
 import java.io.InputStream;
 

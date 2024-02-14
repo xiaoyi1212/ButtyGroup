@@ -1,10 +1,10 @@
-package io.butty.craftbutty;
+package io.butty;
 
 import io.butty.api.ButtyAPI;
 import io.butty.api.ProxyServer;
-import io.butty.craftbutty.network.NetworkServer;
-import io.butty.craftbutty.util.config.Config;
-import io.butty.craftbutty.util.config.SimpleServerConfig;
+import io.butty.network.NetworkServer;
+import io.butty.util.Configuration;
+import io.butty.util.YamlConfiguration;
 import joptsimple.OptionSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,14 +15,14 @@ public class ProxyServerImp implements ProxyServer,Runnable {
 
     private static final Logger LOGGER = LogManager.getLogger(ProxyServer.class);
     NetworkServer network;
-    SimpleServerConfig config;
     boolean isRunning;
     String server_name;
     String server_version;
+    int port;
 
-    public ProxyServerImp(Config config){
-        this.config = config.getConfig();
-        this.network = new NetworkServer(this.config.getPort());
+    public ProxyServerImp(Configuration config){
+        this.port = (int) config.get("port",19132);
+        this.network = new NetworkServer(port);
         this.isRunning = true;
         this.server_name = "ButtyGroup";
         this.server_version = "0.0.1";
@@ -30,11 +30,11 @@ public class ProxyServerImp implements ProxyServer,Runnable {
 
     public static void launch(OptionSet option){
         try {
-            Config config = new Config();
+            YamlConfiguration config = new YamlConfiguration();
             LOGGER.info("Loading server config...");
-            config.loadConfig((File) option.valueOf("config"));
+            Configuration configuration = config.load((File) option.valueOf("config"));
 
-            ProxyServerImp instance = new ProxyServerImp(config);
+            ProxyServerImp instance = new ProxyServerImp(configuration);
             ButtyAPI.setServer(instance);
             Thread thread = new Thread(instance);
             thread.setName("Server Thread");
