@@ -4,6 +4,5 @@ motd: '&eA GroupBDS Server'
 version: '1.20.60'
 servers:
   lobby:
-    name: 'lobby'
     ip: 'localhost'
     port: 19133
