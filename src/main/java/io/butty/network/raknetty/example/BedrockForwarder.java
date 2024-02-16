@@ -37,11 +37,6 @@ public class BedrockForwarder {
         ToStringBuilder.setDefaultStyle(ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
-    public static void main(String[] args) throws Exception {
-        startClient();
-        startServer();
-    }
-
     public static void startServer() throws Exception {
         final ThreadFactory acceptFactory = new DefaultThreadFactory("server-accept");
         final ThreadFactory connectFactory = new DefaultThreadFactory("server-connect");
@@ -135,7 +130,7 @@ public class BedrockForwarder {
                     }
                 });
         // Start the server.
-        final ChannelFuture future = boot.connect("pe.mineplex.com", 19132).sync();
+        final ChannelFuture future = boot.connect("localhost", 19132).sync();
         LOGGER.info("RakNetty client is connected successfully.");
 
         clientChannel = (RakChannel) future.channel();

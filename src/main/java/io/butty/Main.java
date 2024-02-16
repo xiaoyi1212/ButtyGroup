@@ -23,6 +23,10 @@ public class Main {
                 .withRequiredArg()
                 .ofType(File.class)
                 .defaultsTo(new File("config.yml"));
+        parser.acceptsAll(asList("p", "plugins"))
+                .withRequiredArg()
+                .ofType(File.class)
+                .defaultsTo(new File("plugins"));
 
         ServerJVMChecker.check();
         ButtyServer.start(parser.parse(args));

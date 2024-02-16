@@ -25,18 +25,19 @@ public class NetworkServer {
     NioEventLoopGroup connectGroup = new NioEventLoopGroup(connectFactory);
     ServerBootstrap boot;
     int port;
+
     static {
         ToStringBuilder.setDefaultStyle(ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
-    public NetworkServer(int port){
+    public NetworkServer(int port) {
         this.boot = new ServerBootstrap();
         this.port = port;
     }
 
     public void launch() throws InterruptedException {
         try {
-            final ServerBootstrap boot = new ServerBootstrap();
+            boot = new ServerBootstrap();
             boot.group(acceptGroup, connectGroup)
                     .channel(NioRakServerChannel.class)
                     .option(RakServerChannelOption.RAKNET_GUID, 123456L)
@@ -47,12 +48,10 @@ public class NetworkServer {
                     .option(RakServerChannelOption.RAKNET_OFFLINE_RESPONSE, new ExampleBedrockPingResponse())
                     .handler(new LoggingHandler("Reactor", LogLevel.INFO))
                     .childHandler(new LoggingHandler("Connection", LogLevel.INFO));
-
-            final ChannelFuture future = boot.bind(port).sync();
-            final NioRakServerChannel channel = (NioRakServerChannel) future.channel();
-            LOGGER.info("Server port: {}",port);
+            ChannelFuture future = boot.bind(port).sync();
+            NioRakServerChannel channel = (NioRakServerChannel) future.channel();
             channel.closeFuture().sync();
-        } finally {
+        }finally {
             acceptGroup.shutdownGracefully();
             connectGroup.shutdownGracefully();
         }
