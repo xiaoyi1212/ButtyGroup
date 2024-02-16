@@ -1,7 +1,7 @@
-# GroupBDS Config #
+# == ButtyGroup Config == #
 port: 19132
-motd: '&eA GroupBDS Server'
-version: '1.20.60'
+motd1: 'ButtyGroup'
+motd2: 'Welcome'
 servers:
   lobby:
     ip: 'localhost'
